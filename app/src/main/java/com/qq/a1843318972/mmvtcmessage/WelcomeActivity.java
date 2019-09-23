@@ -112,7 +112,6 @@ public class WelcomeActivity extends BaseActivity {
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         initTopbar(0, null);
         setContentView(R.layout.activity_welcome);

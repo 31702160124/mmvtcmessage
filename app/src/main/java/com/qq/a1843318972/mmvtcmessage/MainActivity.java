@@ -8,7 +8,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initTopbar(isImmerse(), "#529bff");
+        initTopbar(isImmerse(), mainColor(getApplicationContext()));
         setContentView(R.layout.activity_main);
         TopBar mainSet = findViewById(R.id.main_set);
         setTopBar(mainSet);

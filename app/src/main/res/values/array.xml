@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="colorset">
+        <item>*首页*当前颜色</item>
+        <item>*设置*当前颜色</item>
+        <item>*信息列表*当前颜色</item>
+        <item>*信息详情*当前颜色</item>
+    </string-array>
+
+    <string-array name="color">
+        <item>#D81B60</item>
+        <item>#da8aa7</item>
+        <item>#529bff</item>
+        <item>#f1ae29</item>
+        <item>#29da2f</item>
+        <item>#761499</item>
+        <item>#030303</item>
+        <item>#da5416</item>
+    </string-array>
+</resources>

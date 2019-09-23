@@ -105,4 +105,5 @@ public class TopBar extends RelativeLayout {
         this.title = title;
         tvTitle.setText(title);
     }
+
 }
