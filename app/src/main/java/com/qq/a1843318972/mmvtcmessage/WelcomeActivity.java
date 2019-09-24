@@ -113,7 +113,7 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initTopbar(0, null);
+        initTopbar(2, null);
         setContentView(R.layout.activity_welcome);
         title = findViewById(R.id.title);
         title1 = findViewById(R.id.title1);
