@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:background="#a7a7a7"
+        android:background="#529bff"
         android:orientation="horizontal">
 
         <TextView
@@ -33,7 +33,7 @@
 
         <Switch
             android:id="@+id/isWelcome"
-            android:layout_width="50dp"
+            android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginRight="40dp"
             android:checked="true"
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="25dp"
-        android:background="#a7a7a7"
+        android:background="#529bff"
         android:orientation="horizontal">
 
         <TextView
@@ -65,7 +65,7 @@
 
         <Switch
             android:id="@+id/isImmerse"
-            android:layout_width="50dp"
+            android:layout_width="90dp"
             android:layout_height="match_parent"
             android:layout_marginRight="40dp"
             android:checked="true"
