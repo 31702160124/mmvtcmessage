@@ -13,4 +13,39 @@
         tools:m_right_image="@drawable/setting"
         tools:m_title="首页" />
 
+
+    <LinearLayout
+        android:id="@+id/page_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"></LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/page_list"
+        android:background="#a6a6ae"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/page_home"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:padding="0px"
+            android:src="@drawable/home1" />
+
+        <ImageView
+            android:id="@+id/page_me"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:padding="50px"
+            android:src="@drawable/me2" />
+
+    </LinearLayout>
+
 </LinearLayout>
