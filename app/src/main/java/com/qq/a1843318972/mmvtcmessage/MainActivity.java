@@ -5,6 +5,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.qq.a1843318972.mmvtcmessage.fragment.page_home;
+import com.qq.a1843318972.mmvtcmessage.fragment.page_me;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private FrameLayout page_main;

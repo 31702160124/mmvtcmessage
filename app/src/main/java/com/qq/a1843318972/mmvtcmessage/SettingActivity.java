@@ -9,6 +9,8 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.qq.a1843318972.mmvtcmessage.Adapter.colorSetAdapter;
+
 import java.util.ArrayList;
 
 public class SettingActivity extends BaseActivity{

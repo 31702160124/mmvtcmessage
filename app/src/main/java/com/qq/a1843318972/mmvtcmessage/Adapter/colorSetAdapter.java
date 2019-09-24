@@ -1,4 +1,4 @@
-package com.qq.a1843318972.mmvtcmessage;
+package com.qq.a1843318972.mmvtcmessage.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +11,11 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.qq.a1843318972.mmvtcmessage.BaseActivity;
+import com.qq.a1843318972.mmvtcmessage.MainActivity;
+import com.qq.a1843318972.mmvtcmessage.R;
+import com.qq.a1843318972.mmvtcmessage.SettingActivity;
 
 import java.util.ArrayList;
 

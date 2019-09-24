@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style>
+	img {
+		max-width:100%;
+		height:auto;
+	}
+
+    </style>
+
+</head>
+
+<body onload="javascript:myObj.showimg()">
+
+<div class="imgBox" id="imgBox">
+
+</div>
+</body>
+<script type="text/javascript">
+        var index=0;
+
+        function test(){
+            var qw =  "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
+            console.log(qw);
+            setImg(qw);
+        }
+
+        function setImg(jsonarr){
+            var arr = JSON.parse(jsonarr);
+            var imgBox = document.getElementById("imgBox");
+            for(var i=0;i<arr.length;i++){
+                var img = document.createElement("img");
+                img.className = "img-slide";
+                img.src = arr[i];
+                img.alt = i+1;
+                if(i!=0) img.style.display = "none";
+                imgBox.appendChild(img);
+            }
+        }
+
+        //改变图片
+        function ChangeImg() {
+            index++;
+            var a=document.getElementsByClassName("img-slide");
+            if(index>=a.length) index=0;
+            for(var i=0;i<a.length;i++){
+                a[i].style.display='none';
+            }
+            a[index].style.display='block';
+        }
+        //设置定时器，每隔两秒切换一张图片
+        setInterval(ChangeImg,2000);
+
+</script>
+</html>
