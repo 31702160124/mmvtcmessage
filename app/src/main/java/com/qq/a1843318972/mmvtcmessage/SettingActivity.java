@@ -22,7 +22,7 @@ public class SettingActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         initTopbar(isImmerse(), setColor(getApplicationContext()));
         setContentView(R.layout.activity_setting);
-        TopBar setBack = findViewById(R.id.set_back);
+        TopBar setBack = (TopBar) findViewById(R.id.set_back);
         setBack.setTitle("设置");
         setTopBar(setBack);
         setBack.getLeftBtnImage().setOnClickListener(new View.OnClickListener() {
@@ -41,7 +41,7 @@ public class SettingActivity extends BaseActivity{
         ArrayList mListData = new ArrayList();
         for (String s : getResources().getStringArray(R.array.colorset))
             mListData.add(s);
-        colorlist = findViewById(R.id.colorlist);
+        colorlist = (ListView) findViewById(R.id.colorlist);
         colorSetAdapter colorAdapter = new colorSetAdapter(this, mListData, getResources().getStringArray(R.array.color));
         colorlist.setAdapter(colorAdapter);
     }
@@ -49,8 +49,8 @@ public class SettingActivity extends BaseActivity{
     //switch设置
     private void initSwitch() {
 
-        isWelcome = findViewById(R.id.isWelcome);
-        isImmerse = findViewById(R.id.isImmerse);
+        isWelcome = (Switch) findViewById(R.id.isWelcome);
+        isImmerse = (Switch) findViewById(R.id.isImmerse);
 
         if (isWelcome()) {
             isWelcome.setChecked(true);

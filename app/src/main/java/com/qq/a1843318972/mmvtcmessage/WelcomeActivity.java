@@ -115,10 +115,10 @@ public class WelcomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         initTopbar(2, null);
         setContentView(R.layout.activity_welcome);
-        title = findViewById(R.id.title);
-        title1 = findViewById(R.id.title1);
-        logo = findViewById(R.id.logo);
-        pikaqiu = findViewById(R.id.pikaqiu);
+        title = (LinearLayout) findViewById(R.id.title);
+        title1 = (TextView) findViewById(R.id.title1);
+        logo = (ImageView) findViewById(R.id.logo);
+        pikaqiu = (LinearLayout) findViewById(R.id.pikaqiu);
         if (isWelcome()) {
             thread.start();
         } else {

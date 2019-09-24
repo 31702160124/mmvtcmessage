@@ -16,10 +16,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         initTopbar(isImmerse(), mainColor(getApplicationContext()));
         setContentView(R.layout.activity_main);
-        mainSet = findViewById(R.id.main_set);
-        page_main = findViewById(R.id.page_main);
-        page_home = findViewById(R.id.page_home);
-        page_me = findViewById(R.id.page_me);
+        mainSet = (TopBar) findViewById(R.id.main_set);
+        page_main = (LinearLayout) findViewById(R.id.page_main);
+        page_home = (ImageView) findViewById(R.id.page_home);
+        page_me = (ImageView) findViewById(R.id.page_me);
 
         page_home.setOnClickListener(this);
         page_me.setOnClickListener(this);
