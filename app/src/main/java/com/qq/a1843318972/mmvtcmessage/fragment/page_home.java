@@ -14,15 +14,25 @@ import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.qq.a1843318972.mmvtcmessage.Adapter.homeAdapter;
 import com.qq.a1843318972.mmvtcmessage.R;
 import com.qq.a1843318972.mmvtcmessage.config.userConfig;
+import com.qq.a1843318972.mmvtcmessage.utils.getHtml;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.IOException;
 import java.util.Objects;
 
+import okhttp3.OkHttpClient;
+
 public class page_home extends Fragment {
+    private String TAG = "paghome";
     private WebView webView;
     private GridView xx_home;
     private static final String APP_CACHE_DIRNAME = "/webcache"; // web缓存目录
@@ -36,6 +46,7 @@ public class page_home extends Fragment {
         webView.loadUrl("file:///android_asset/lunbotu.html");
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         settings.setUseWideViewPort(true);//设定支持viewport
         settings.setLoadWithOverviewMode(true);   //自适应屏幕
         settings.setBuiltInZoomControls(true);
@@ -55,6 +66,20 @@ public class page_home extends Fragment {
         webView.addJavascriptInterface(new MyObject(), "myObj");
         xx_home = view.findViewById(R.id.xx_home);
         xx_home.setAdapter(new homeAdapter(getContext(), userConfig.imageId, userConfig.names));
+        xx_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), userConfig.names[i], Toast.LENGTH_SHORT).show();
+                    }
+                });
+                Log.e(TAG, "onItemClick: " + userConfig.names[i] + "  " + i);
+            }
+        });
         return view;
     }
 
@@ -63,14 +88,27 @@ public class page_home extends Fragment {
         //将显示Toast和对话框的方法暴露给JS脚本调用
         @JavascriptInterface
         public void showimg() {
-            getActivity().runOnUiThread(new Runnable() {
+
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String json = "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
-                    Log.i("q1q1", "setmg: " + json);
-                    webView.loadUrl("javascript:setImg('" + json + "')");
+                    String imgSrc = null;
+                    try {
+                        imgSrc = getHtml.getHtmlContent("https://www.mmvtc.cn/templet/default/index.jsp");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    String finalImgSrc = imgSrc;
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.e("lunbotu", "setmg: " + finalImgSrc);
+                            webView.loadUrl("javascript:setImg('" + finalImgSrc + "')");
+                        }
+                    });
                 }
-            });
+            }).start();
         }
 
     }
