@@ -49,8 +49,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    public void startActivity(Class clazz) {
-        startActivity(new Intent(getApplicationContext(), clazz));
+    public void startActivity(Class clazz, Intent intent) {
+        if (intent == null) {
+            startActivity(new Intent(getApplicationContext(), clazz));
+        } else {
+            startActivity(intent);
+        }
     }
 
     public Boolean isWelcome() {
@@ -73,8 +77,20 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public static String setColor(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("userConfig", Context.MODE_PRIVATE);
-        String setColor = sharedPreferences.getString("setColor", "#f1ae29");
+        String setColor = sharedPreferences.getString("setColor", "#44dbe1");
         return setColor;
+    }
+
+    public static String newsListColor(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userConfig", Context.MODE_PRIVATE);
+        String newsListColor = sharedPreferences.getString("newsListColor", "#ffcc00");
+        return newsListColor;
+    }
+
+    public static String newShowColor(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userConfig", Context.MODE_PRIVATE);
+        String newShowColor = sharedPreferences.getString("newShowColor", "#da8aa7");
+        return newShowColor;
     }
 
     public static void saveMainColor(Context context, String string) {
@@ -91,9 +107,29 @@ public abstract class BaseActivity extends AppCompatActivity {
         editor.commit();
     }
 
+    public static void saveNewsListColor(Context context, String string) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userConfig", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("newsListColor", string);
+        editor.commit();
+    }
+
+    public static void saveNewShowColor(Context context, String string) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("userConfig", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("newShowColor", string);
+        editor.commit();
+    }
+
     private void saveDefault(Context context, String string) {
         saveMainColor(context, string);
         saveSetColor(context, string);
+        saveNewsListColor(context, string);
+    }
+
+    public void goMain() {
+        startActivity(MainActivity.class, null);
+        finish();
     }
 
 }

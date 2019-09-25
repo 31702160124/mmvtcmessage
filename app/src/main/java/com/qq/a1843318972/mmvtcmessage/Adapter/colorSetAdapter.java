@@ -77,6 +77,14 @@ public class colorSetAdapter extends BaseAdapter {
                             BaseActivity.saveSetColor(mContext, string);
                             goActivity(SettingActivity.class);
                             break;
+                        case 2:
+                            BaseActivity.saveNewsListColor(mContext, string);
+                            goActivity(MainActivity.class);
+                            break;
+                        case 3:
+                            BaseActivity.saveNewShowColor(mContext, string);
+                            goActivity(SettingActivity.class);
+                            break;
                     }
                 }
             });
@@ -103,6 +111,12 @@ public class colorSetAdapter extends BaseAdapter {
                 break;
             case 1:
                 color_tips.setBackgroundColor((Color.parseColor(BaseActivity.setColor(mContext))));
+                break;
+            case 2:
+                color_tips.setBackgroundColor((Color.parseColor(BaseActivity.newsListColor(mContext))));
+                break;
+            case 3:
+                color_tips.setBackgroundColor((Color.parseColor(BaseActivity.newShowColor(mContext))));
                 break;
         }
         return view;

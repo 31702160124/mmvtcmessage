@@ -1,6 +1,7 @@
 package com.qq.a1843318972.mmvtcmessage;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -45,7 +46,7 @@ public class TopBar extends RelativeLayout {
         // WidgetTopBar_m_left这个名字很奇怪，我们明明没有定义，
         // 这是因为系统自动把我们定义的m_title加到WidgetTopBar后面去了
         //标题
-//        title = typedArray.getString(R.styleable.WidgetTopBar_m_title);
+        //        title = typedArray.getString(R.styleable.WidgetTopBar_m_title);
         //左边按钮的文字
         leftText = typedArray.getString(R.styleable.WidgetTopBar_m_left_text);
         //左边按钮的图片
@@ -99,6 +100,16 @@ public class TopBar extends RelativeLayout {
     //获取右边图片按钮
     public ImageButton getRightBtnImage() {
         return ibRight;
+    }
+
+    public void setTitle(Activity activity, String title) {
+        this.title = title;
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                tvTitle.setText(title);
+            }
+        });
     }
 
     public void setTitle(String title) {

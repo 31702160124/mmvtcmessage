@@ -10,7 +10,9 @@
     <WebView
         android:id="@+id/web"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="135dp"
+        android:fadeScrollbars="false"
+        android:scrollbars="none" />
 
     <RelativeLayout
         android:layout_width="match_parent"

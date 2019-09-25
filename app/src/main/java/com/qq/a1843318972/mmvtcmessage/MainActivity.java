@@ -11,7 +11,7 @@ import com.qq.a1843318972.mmvtcmessage.fragment.page_me;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private FrameLayout page_main;
-    private ImageView   page_home, page_me;
+    private ImageView page_home, page_me;
     private TopBar mainSet;
 
     @Override
@@ -28,13 +28,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         page_me.setOnClickListener(this);
 
         setTopBar(mainSet);
-        mainSet.setTitle("首页");
+        mainSet.setTitle(this, "首页");
         getSupportFragmentManager().beginTransaction().replace(R.id.page_main, new page_home()).commit();
-        
+
         mainSet.getRightBtnImage().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(SettingActivity.class);
+                startActivity(SettingActivity.class, null);
                 finish();
             }
         });
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.page_home:
-                mainSet.setTitle("首页");
+                mainSet.setTitle(this, "首页");
                 getSupportFragmentManager().beginTransaction().replace(R.id.page_main, new page_home()).commit();
                 page_home.setImageResource(R.drawable.home1);
                 page_home.setPadding(0, 0, 0, 0);
@@ -58,7 +58,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 page_me.setPadding(20, 20, 20, 20);
                 break;
             case R.id.page_me:
-                mainSet.setTitle("个人");
+                mainSet.setTitle(this, "个人");
                 getSupportFragmentManager().beginTransaction().replace(R.id.page_main, new page_me()).commit();
                 page_home.setImageResource(R.drawable.home2);
                 page_home.setPadding(20, 20, 20, 20);

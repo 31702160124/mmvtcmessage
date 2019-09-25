@@ -13,7 +13,7 @@ import com.qq.a1843318972.mmvtcmessage.Adapter.colorSetAdapter;
 
 import java.util.ArrayList;
 
-public class SettingActivity extends BaseActivity{
+public class SettingActivity extends BaseActivity {
 
     private Switch isWelcome, isImmerse;
     private TextView main_color, set_color, msg_color;
@@ -25,7 +25,7 @@ public class SettingActivity extends BaseActivity{
         initTopbar(isImmerse(), setColor(getApplicationContext()));
         setContentView(R.layout.activity_setting);
         TopBar setBack = (TopBar) findViewById(R.id.set_back);
-        setBack.setTitle("设置");
+        setBack.setTitle(this, "设置");
         setTopBar(setBack);
         setBack.getLeftBtnImage().setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,13 +89,6 @@ public class SettingActivity extends BaseActivity{
         });
     }
 
-    //监听返回键
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        goMain();
-    }
-
     //保存是否开启欢迎页
     private void saveisWelcome(Boolean isWelcome) {
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("userConfig", Context.MODE_PRIVATE);
@@ -112,9 +105,11 @@ public class SettingActivity extends BaseActivity{
         editor.commit();
     }
 
-
-    private void goMain() {
-        startActivity(MainActivity.class);
-        finish();
+    //监听返回键
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        goMain();
     }
+
 }

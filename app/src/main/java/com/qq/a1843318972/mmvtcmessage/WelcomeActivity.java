@@ -103,7 +103,7 @@ public class WelcomeActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                startActivity(MainActivity.class);
+                startActivity(MainActivity.class, null);
                 finish();
             }
         });
