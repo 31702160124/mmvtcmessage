@@ -77,7 +77,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public static String setColor(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("userConfig", Context.MODE_PRIVATE);
-        String setColor = sharedPreferences.getString("setColor", "#44dbe1");
+        String setColor = sharedPreferences.getString("setColor", "#da5416");
         return setColor;
     }
 

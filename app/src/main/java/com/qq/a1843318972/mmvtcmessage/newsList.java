@@ -1,30 +1,22 @@
 package com.qq.a1843318972.mmvtcmessage;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.qq.a1843318972.mmvtcmessage.Adapter.homeAdapter;
-import com.qq.a1843318972.mmvtcmessage.config.homeConfig;
 import com.qq.a1843318972.mmvtcmessage.entity.homeItem;
-import com.qq.a1843318972.mmvtcmessage.fragment.page_home;
 import com.qq.a1843318972.mmvtcmessage.utils.getHtml;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class newsList extends BaseActivity implements View.OnClickListener {
     private String TAG = "newsList";
@@ -69,10 +61,10 @@ public class newsList extends BaseActivity implements View.OnClickListener {
                 if (b <= 1) {
                     b = 1;
                     newsListWeb.loadUrl(baseUrl + id + port + 0);
+                    Toast.makeText(this, "没有上一页", Toast.LENGTH_SHORT).show();
                 } else {
                     newsListWeb.loadUrl(baseUrl + id + port + (--b));
                 }
-                Toast.makeText(this, "没有上一页", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.down_page:
                 if (b > 60) {

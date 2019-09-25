@@ -13,9 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
@@ -28,14 +26,8 @@ import com.qq.a1843318972.mmvtcmessage.newsList;
 import com.qq.a1843318972.mmvtcmessage.utils.getHtml;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-
 import java.io.IOException;
-import java.util.Map;
 import java.util.Objects;
-
-import okhttp3.OkHttpClient;
 
 public class page_home extends Fragment {
     private String TAG = "paghome";
@@ -97,7 +89,7 @@ public class page_home extends Fragment {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String imgSrc = null;
+                    String imgSrc = "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
                     try {
                         imgSrc = getHtml.getImgSrc("https://www.mmvtc.cn/templet/default/index.jsp");
                     } catch (IOException e) {
@@ -108,7 +100,6 @@ public class page_home extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Log.e("lunbotu", "setmg: " + finalImgSrc);
                             webView.loadUrl("javascript:setImg('" + finalImgSrc + "')");
                         }
                     });

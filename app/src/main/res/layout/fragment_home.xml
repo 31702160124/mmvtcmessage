@@ -10,14 +10,15 @@
     <WebView
         android:id="@+id/web"
         android:layout_width="match_parent"
-        android:layout_height="135dp"
+        android:layout_height="wrap_content"
         android:fadeScrollbars="false"
         android:scrollbars="none" />
 
     <RelativeLayout
+        android:background="#95bff7"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
+        android:paddingTop="10dp">
 
         <GridView
             android:id="@+id/xx_home"
