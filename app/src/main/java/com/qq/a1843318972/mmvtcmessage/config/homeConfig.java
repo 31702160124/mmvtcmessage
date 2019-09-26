@@ -1,16 +1,13 @@
 package com.qq.a1843318972.mmvtcmessage.config;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.res.ResourcesCompat;
-
 import com.qq.a1843318972.mmvtcmessage.R;
 import com.qq.a1843318972.mmvtcmessage.entity.homeItem;
 
 import java.util.ArrayList;
 
 public class homeConfig {
+
+
 
     public static ArrayList<homeItem> getHomeItems() {
         ArrayList<homeItem> homeItems = new ArrayList<>();

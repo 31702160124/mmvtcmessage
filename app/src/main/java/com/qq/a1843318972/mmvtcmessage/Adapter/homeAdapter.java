@@ -2,7 +2,6 @@ package com.qq.a1843318972.mmvtcmessage.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.view.View;
@@ -56,7 +55,6 @@ public class homeAdapter extends BaseAdapter {
             tv_name.setVisibility(View.GONE);
         }
         tv_name.setText(homeItems.get(position).getNames());
-        //        tv_name.setId(homeItems.get(position).getNamesId());
         return view;
     }
 
@@ -70,5 +68,7 @@ public class homeAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return homeItems.get(position).getNamesId();
     }
+
+
 }
 

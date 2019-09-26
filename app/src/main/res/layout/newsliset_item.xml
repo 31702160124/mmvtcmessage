@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="3dp"
+        android:background="#f2c306" />
+
+    <LinearLayout
+        android:id="@+id/go_news"
+        android:layout_marginTop="1dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/newsLists_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="#00b7ff"
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:textColor="#80000000"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/newsLists_name"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:singleLine="false"
+                android:text="2121212121"
+                android:textColor="#80000000"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/down_blue" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d6af14" />
+
+</LinearLayout>

@@ -22,7 +22,7 @@ import com.qq.a1843318972.mmvtcmessage.Adapter.homeAdapter;
 import com.qq.a1843318972.mmvtcmessage.R;
 import com.qq.a1843318972.mmvtcmessage.config.homeConfig;
 import com.qq.a1843318972.mmvtcmessage.entity.homeItem;
-import com.qq.a1843318972.mmvtcmessage.newsList;
+import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
 import com.qq.a1843318972.mmvtcmessage.utils.getHtml;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 

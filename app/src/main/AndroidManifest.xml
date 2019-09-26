@@ -32,7 +32,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".newsList">
+        <activity android:name=".newsList.newsList"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".newsListWebView">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
