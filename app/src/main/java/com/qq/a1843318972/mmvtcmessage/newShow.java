@@ -3,12 +3,16 @@ package com.qq.a1843318972.mmvtcmessage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
+import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 
 public class newShow extends BaseActivity {
-
+    private String TAG = "newShow";
+    private WebView newShowwebView;
     private String newShowUrl, showNewsName;
     private int id;
 
@@ -34,6 +38,10 @@ public class newShow extends BaseActivity {
         });
         newShowUrl = intent.getStringExtra("url");
         Toast.makeText(this, newShowUrl, Toast.LENGTH_SHORT).show();
+        newShowwebView = findViewById(R.id.newshowweb);
+        newShowwebView.loadUrl("file:///android_asset/newShow.html");
+        newShowwebView.addJavascriptInterface(new newsshow(), "newsshow");
+        webViewSetting.webviewSetting(this, newShowwebView);
     }
 
     //监听返回键
@@ -43,4 +51,22 @@ public class newShow extends BaseActivity {
         newsList.instance.finish();
         goMain();
     }
+
+    public class newsshow {
+        //将显示Toast和对话框的方法暴露给JS脚本调用
+        @JavascriptInterface
+        public void newsshowhtml() {
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    String imgSrc = "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
+                    newShowwebView.loadUrl("javascript:setNews('" + imgSrc + "')");
+                }
+            });
+        }
+
+    }
+
 }

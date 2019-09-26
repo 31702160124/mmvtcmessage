@@ -12,4 +12,11 @@
         android:layout_height="wrap_content"
         tools:m_left_image="@drawable/back" />
 
+    <WebView
+        android:id="@+id/newshowweb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="false"
+        android:scrollbars="none" />
+
 </LinearLayout>

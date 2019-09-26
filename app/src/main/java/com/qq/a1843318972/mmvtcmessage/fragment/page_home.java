@@ -31,9 +31,8 @@ import java.util.Objects;
 
 public class page_home extends Fragment {
     private String TAG = "paghome";
-    private WebView webView;
+    private WebView pagehomewebView;
     private GridView xx_home;
-    private myNewsList myNewsList;
 
     public interface myNewsList {
         public void whoNewsList(homeItem homeItem);
@@ -44,16 +43,15 @@ public class page_home extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        webView = view.findViewById(R.id.web);
-        webView.loadUrl("file:///android_asset/lunbotu.html");
-        webView.addJavascriptInterface(new MyObject(), "myObj");
-        webViewSetting.webviewSetting(getContext(), webView);
+        pagehomewebView = view.findViewById(R.id.pagehomeweb);
+        pagehomewebView.loadUrl("file:///android_asset/lunbotu.html");
+        pagehomewebView.addJavascriptInterface(new pageHome(), "pageHome");
+        webViewSetting.webviewSetting(getContext(), pagehomewebView);
         xx_home = view.findViewById(R.id.xx_home);
         xx_home.setAdapter(new homeAdapter(getContext(), homeConfig.getHomeItems()));
         xx_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
 
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
@@ -80,7 +78,7 @@ public class page_home extends Fragment {
         return view;
     }
 
-    public class MyObject {
+    public class pageHome {
 
         //将显示Toast和对话框的方法暴露给JS脚本调用
         @JavascriptInterface
@@ -88,7 +86,8 @@ public class page_home extends Fragment {
 
             new Thread(new Runnable() {
                 @Override
-                public void run() {
+                public void
+                run() {
                     String imgSrc = "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
                     try {
                         imgSrc = getHtml.getImgSrc("https://www.mmvtc.cn/templet/default/index.jsp");
@@ -100,7 +99,7 @@ public class page_home extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            webView.loadUrl("javascript:setImg('" + finalImgSrc + "')");
+                            pagehomewebView.loadUrl("javascript:setImg('" + finalImgSrc + "')");
                         }
                     });
                 }
