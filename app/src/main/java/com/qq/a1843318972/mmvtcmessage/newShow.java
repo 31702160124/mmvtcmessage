@@ -33,7 +33,7 @@ public class newShow extends BaseActivity {
             }
         });
         newShowUrl = intent.getStringExtra("url");
-        Toast.makeText(this, showNewsName + id, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, newShowUrl, Toast.LENGTH_SHORT).show();
     }
 
     //监听返回键

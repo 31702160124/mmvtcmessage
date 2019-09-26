@@ -7,6 +7,11 @@ import android.widget.ListView;
 import com.qq.a1843318972.mmvtcmessage.Adapter.newsListAdapter;
 import com.qq.a1843318972.mmvtcmessage.entity.newsListItem;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,7 +56,8 @@ public class getHtml {
         }
     }
 
-    public static void getNewsList(Activity activity, String url, int nextId, ListView listView, String page_name, int id) {
+    public static void getNewsList(Activity activity, String url, int whoList, ListView listView, String page_name, int id) {
+        Log.i(TAG, "getNewsList: " + url);
         ArrayList<newsListItem> newsArrayList = new ArrayList<newsListItem>();
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
@@ -70,9 +76,28 @@ public class getHtml {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String newsListContext = response.body().string();
-                Log.e(TAG, "onResponse: " + newsListContext);
-
-                newsArrayList.add(new newsListItem(new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date(System.currentTimeMillis())), "获取成功"));
+                Document doc = Jsoup.parse(newsListContext);
+                switch (whoList) {
+                    case 0:
+                        Elements homeEsLi = doc.select("div.mt-20 ul > li");
+                        for (Element homeELi : homeEsLi) {
+                            Elements homeTime = homeELi.getElementsByTag("time");
+                            Elements HomeName = homeELi.select("div > a");
+                            newsArrayList.add(new newsListItem(homeTime.text(), HomeName.text(), "https://www.mmvtc.cn" + HomeName.attr("href")));
+                        }
+                        break;
+                    case 1:
+                        Elements esLi = doc.select("div.cbox ul > li");
+                        for (Element eLi : esLi) {
+                            Elements estime = eLi.getElementsByTag("span");
+                            Elements esName = eLi.select("div > a");
+                            newsArrayList.add(new newsListItem(estime.text(), esName.text(), "https://www.mmvtc.cn" + esName.attr("href")));
+                        }
+                        break;
+                    case 2:
+                        //扩展
+                        break;
+                }
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

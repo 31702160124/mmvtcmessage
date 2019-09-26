@@ -52,7 +52,7 @@ public class newsList extends BaseActivity implements View.OnClickListener {
         if (page_name.contains("计算机工程系")) {
             getHtml.getNewsList(this, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
         } else {
-            getHtml.getNewsList(this, baseUrl + id + port + b, 1, newsLists, page_name, id);
+            getHtml.getNewsList(this, baseUrl + id + port + b, 0, newsLists, page_name, id);
         }
 
         Toast.makeText(this, page_name, Toast.LENGTH_SHORT).show();
@@ -79,18 +79,18 @@ public class newsList extends BaseActivity implements View.OnClickListener {
                         up_img.setBackground(getResources().getDrawable(R.drawable.up_black));
                     } else {
                         if (page_name.contains("计算机工程系")) {
-
+                            getHtml.getNewsList(this, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
                         } else {
-
+                            getHtml.getNewsList(this, baseUrl + id + port + b, 0, newsLists, page_name, id);
                         }
                     }
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_black));
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_blue));
                 } else {
                     if (page_name.contains("计算机工程系")) {
-
+                        getHtml.getNewsList(this, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
                     } else {
-
+                        getHtml.getNewsList(this, baseUrl + id + port + b, 0, newsLists, page_name, id);
                     }
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_blue));
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_blue));
@@ -105,18 +105,18 @@ public class newsList extends BaseActivity implements View.OnClickListener {
                         down_img.setBackground(getResources().getDrawable(R.drawable.down_black));
                     } else {
                         if (page_name.contains("计算机工程系")) {
-
+                            getHtml.getNewsList(this, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
                         } else {
-
+                            getHtml.getNewsList(this, baseUrl + id + port + b, 0, newsLists, page_name, id);
                         }
                     }
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_black));
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_blue));
                 } else {
                     if (page_name.contains("计算机工程系")) {
-
+                        getHtml.getNewsList(this, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
                     } else {
-
+                        getHtml.getNewsList(this, baseUrl + id + port + b, 0, newsLists, page_name, id);
                     }
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_blue));
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_blue));
