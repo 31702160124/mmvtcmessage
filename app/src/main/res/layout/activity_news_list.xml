@@ -13,12 +13,12 @@
         tools:m_left_image="@drawable/back" />
 
     <ListView
-        android:paddingTop="10dp"
         android:id="@+id/newsLists"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:fadeScrollbars="false"
+        android:paddingTop="10dp"
         android:scrollbars="none" />
 
     <LinearLayout
@@ -58,6 +58,12 @@
                 android:layout_weight="1" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/page_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical" />
 
         <LinearLayout
             android:id="@+id/down_page"

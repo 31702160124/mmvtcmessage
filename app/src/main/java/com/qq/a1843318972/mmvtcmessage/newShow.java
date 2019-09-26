@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
-import android.widget.Toast;
 
 import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
@@ -37,10 +36,10 @@ public class newShow extends BaseActivity {
             }
         });
         newShowUrl = intent.getStringExtra("url");
-        Toast.makeText(this, newShowUrl, Toast.LENGTH_SHORT).show();
         newShowwebView = findViewById(R.id.newshowweb);
-        newShowwebView.loadUrl("file:///android_asset/newShow.html");
-        newShowwebView.addJavascriptInterface(new newsshow(), "newsshow");
+        newShowwebView.loadUrl(newShowUrl);
+        //        newShowwebView.loadUrl("file:///android_asset/newShow.html");
+        //        newShowwebView.addJavascriptInterface(new newsshow(), "newsshow");
         webViewSetting.webviewSetting(this, newShowwebView);
     }
 

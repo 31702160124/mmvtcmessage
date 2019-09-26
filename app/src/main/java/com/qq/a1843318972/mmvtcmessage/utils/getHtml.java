@@ -6,6 +6,7 @@ import android.widget.ListView;
 
 import com.qq.a1843318972.mmvtcmessage.Adapter.newsListAdapter;
 import com.qq.a1843318972.mmvtcmessage.entity.newsListItem;
+import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -56,7 +57,7 @@ public class getHtml {
         }
     }
 
-    public static void getNewsList(Activity activity, String url, int whoList, ListView listView, String page_name, int id) {
+    public static void getNewsList(Activity activity, android.os.Handler handler, String url, int whoList, ListView listView, String page_name, int id) {
         Log.i(TAG, "getNewsList: " + url);
         ArrayList<newsListItem> newsArrayList = new ArrayList<newsListItem>();
         OkHttpClient client = new OkHttpClient();
@@ -79,6 +80,11 @@ public class getHtml {
                 Document doc = Jsoup.parse(newsListContext);
                 switch (whoList) {
                     case 0:
+                        Elements homesize = doc.select("div#page td > span");
+                        newsList.down_ID = Integer.valueOf(homesize.text());
+                        if (!homesize.text().isEmpty()) {
+                            handler.sendEmptyMessage(0);
+                        }
                         Elements homeEsLi = doc.select("div.mt-20 ul > li");
                         for (Element homeELi : homeEsLi) {
                             Elements homeTime = homeELi.getElementsByTag("time");
@@ -87,6 +93,12 @@ public class getHtml {
                         }
                         break;
                     case 1:
+                        Elements jsjsize = doc.select("span#htmlPageCount");
+                        Log.e(TAG, "onResponse: " + jsjsize.text());
+                        newsList.down_ID = Integer.valueOf(jsjsize.text());
+                        if (!jsjsize.text().isEmpty()) {
+                            handler.sendEmptyMessage(0);
+                        }
                         Elements esLi = doc.select("div.cbox ul > li");
                         for (Element eLi : esLi) {
                             Elements estime = eLi.getElementsByTag("span");
