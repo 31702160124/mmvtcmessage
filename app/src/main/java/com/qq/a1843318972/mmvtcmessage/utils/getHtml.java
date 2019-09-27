@@ -1,7 +1,7 @@
 package com.qq.a1843318972.mmvtcmessage.utils;
 
 import android.app.Activity;
-import android.util.Log;
+import android.webkit.WebView;
 import android.widget.ListView;
 
 import com.qq.a1843318972.mmvtcmessage.Adapter.newsListAdapter;
@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,6 +30,51 @@ import okhttp3.Response;
 public class getHtml {
 
     private static String TAG = "gethtml";
+
+    public static void getImgSrc(WebView webView, Activity activity, String url) {
+        String json = "[\"image/1.png\",\"image/2.png\",\"image/3.png\",\"image/4.png\",\"image/5.png\"]";
+        OkHttpClient client = new OkHttpClient.Builder().connectTimeout(10, TimeUnit.SECONDS).build();
+        Request request = new Request.Builder().url(url).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        webView.loadUrl("javascript:setImg('" + json + "')");
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String imgSrc = response.body().string();
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Pattern p = Pattern.compile("<img[^>]+src\\s*=\\s*['\"]([^'\"]+)['\"][^>]*>");
+                        Matcher m = p.matcher(imgSrc);
+                        ArrayList htmlSrc = new ArrayList();
+                        while (m.find()) {
+                            //整个img标签
+                            if (m.group(1).split("/")[0].equals("slider"))
+                                htmlSrc.add("\"https://www.mmvtc.cn/templet/default/" + m.group(1) + "\"");
+                        }
+
+                        String json2 = "";
+                        for (int i = 1; i < htmlSrc.size(); i++) {
+                            if (i == 1)
+                                json2 = json2 + htmlSrc.get(0);
+                            json2 = json2 + "," + htmlSrc.get(i);
+                        }
+                        json2 = "[" + json2 + "]";
+                        webView.loadUrl("javascript:setImg('" + json2 + "')");
+                    }
+                });
+            }
+        });
+    }
 
     public static String getImgSrc(String url) throws IOException {
         OkHttpClient client = new OkHttpClient();
@@ -58,7 +104,6 @@ public class getHtml {
     }
 
     public static void getNewsList(Activity activity, android.os.Handler handler, String url, int whoList, ListView listView, String page_name, int id) {
-        Log.i(TAG, "getNewsList: " + url);
         ArrayList<newsListItem> newsArrayList = new ArrayList<newsListItem>();
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(url).build();
@@ -94,7 +139,6 @@ public class getHtml {
                         break;
                     case 1:
                         Elements jsjsize = doc.select("span#htmlPageCount");
-                        Log.e(TAG, "onResponse: " + jsjsize.text());
                         newsList.down_ID = Integer.valueOf(jsjsize.text());
                         if (!jsjsize.text().isEmpty()) {
                             handler.sendEmptyMessage(0);

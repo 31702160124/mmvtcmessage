@@ -30,8 +30,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class page_home extends Fragment {
-    private String TAG = "paghome";
-    private WebView pagehomewebView;
+    private String   TAG = "paghome";
+    private WebView  pagehomewebView;
     private GridView xx_home;
 
     public interface myNewsList {
@@ -80,30 +80,9 @@ public class page_home extends Fragment {
 
     public class pageHome {
 
-        //将显示Toast和对话框的方法暴露给JS脚本调用
         @JavascriptInterface
         public void showimg() {
-
-            new Thread(new Runnable() {
-                @Override
-                public void
-                run() {
-                    String imgSrc = "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
-                    try {
-                        imgSrc = getHtml.getImgSrc("https://www.mmvtc.cn/templet/default/index.jsp");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    String finalImgSrc = imgSrc;
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            pagehomewebView.loadUrl("javascript:setImg('" + finalImgSrc + "')");
-                        }
-                    });
-                }
-            }).start();
+            getHtml.getImgSrc(pagehomewebView, getActivity(), "https://www.mmvtc.cn/templet/default/index.jsp");
         }
 
     }
