@@ -5,7 +5,6 @@ import android.app.ProgressDialog;
 import android.util.Log;
 import android.webkit.WebView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.qq.a1843318972.mmvtcmessage.Adapter.newsListAdapter;
 import com.qq.a1843318972.mmvtcmessage.entity.newsListItem;
@@ -90,17 +89,13 @@ public class getHtml {
             @Override
             public void onFailure(Call call, IOException e) {
                 progressDialog.dismiss();
-                if (netWork.isNewworkConnected(activity.getApplicationContext())) {
-                    activity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String json = "<h1 style=\"text-align: center\">404 Not Found</h1>" + url;
-                            webView.loadUrl("javascript:setNews('" + json.toString() + "')");
-                        }
-                    });
-                } else {
-                    Toast.makeText(activity.getApplicationContext(), "请打开网络......", Toast.LENGTH_SHORT).show();
-                }
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String json = "<h1 style=\"text-align: center\">404 Not Found</h1>" + url;
+                        webView.loadUrl("javascript:setNews('" + json.toString() + "')");
+                    }
+                });
             }
 
             @Override
@@ -147,7 +142,7 @@ public class getHtml {
             @Override
             public void onFailure(Call call, IOException e) {
                 progressDialog.dismiss();
-                newsArrayList.add(new newsListItem(new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date(System.currentTimeMillis())), "获取失败"));
+                newsArrayList.add(new newsListItem(new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss").format(new Date(System.currentTimeMillis())), "请打开网络"));
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -195,11 +190,7 @@ public class getHtml {
                     @Override
                     public void run() {
                         progressDialog.dismiss();
-                        if (netWork.isNewworkConnected(activity.getApplicationContext())) {
-                            listView.setAdapter(new newsListAdapter(activity.getApplicationContext(), newsArrayList, page_name, id));
-                        } else {
-                            Toast.makeText(activity.getApplicationContext(), "请打开网络......", Toast.LENGTH_SHORT).show();
-                        }
+                        listView.setAdapter(new newsListAdapter(activity.getApplicationContext(), newsArrayList, page_name, id));
                     }
                 });
             }
