@@ -26,12 +26,11 @@ import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
 import com.qq.a1843318972.mmvtcmessage.utils.getHtml;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 
-import java.io.IOException;
 import java.util.Objects;
 
 public class page_home extends Fragment {
-    private String   TAG = "paghome";
-    private WebView  pagehomewebView;
+    private String TAG = "paghome";
+    private WebView pagehomewebView;
     private GridView xx_home;
 
     public interface myNewsList {
@@ -44,7 +43,12 @@ public class page_home extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         pagehomewebView = view.findViewById(R.id.pagehomeweb);
-        pagehomewebView.loadUrl("file:///android_asset/lunbotu.html");
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                pagehomewebView.loadUrl("file:///android_asset/lunbotu.html");
+            }
+        });
         pagehomewebView.addJavascriptInterface(new pageHome(), "pageHome");
         webViewSetting.webviewSetting(getContext(), pagehomewebView);
         xx_home = view.findViewById(R.id.xx_home);

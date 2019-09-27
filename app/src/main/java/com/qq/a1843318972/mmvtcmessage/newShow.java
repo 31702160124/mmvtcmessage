@@ -1,16 +1,19 @@
 package com.qq.a1843318972.mmvtcmessage;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.webkit.WebView;
 
 import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
+import com.qq.a1843318972.mmvtcmessage.utils.getHtml;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 
 public class newShow extends BaseActivity {
-    private String TAG = "newShow";
+    private static String TAG = "newShow";
+    private ProgressDialog progressDialog;
     private WebView newShowwebView;
     private String newShowUrl, showNewsName;
     private int id;
@@ -35,13 +38,27 @@ public class newShow extends BaseActivity {
                 finish();
             }
         });
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("loading,不要急");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         newShowUrl = intent.getStringExtra("url");
         newShowwebView = findViewById(R.id.newshowweb);
-        newShowwebView.loadUrl(newShowUrl);
-        //        newShowwebView.loadUrl("file:///android_asset/newShow.html");
-        //        newShowwebView.addJavascriptInterface(new newsshow(), "newsshow");
+        Log.e(TAG, "onResponse: " + showNewsName);
+        if (showNewsName.contains("计算机工程系")) {
+            getHtml.getNewsShow(this, newShowwebView, newShowUrl, 1, progressDialog);
+        } else {
+            getHtml.getNewsShow(this, newShowwebView, newShowUrl, 0, progressDialog);
+        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                newShowwebView.loadUrl("file:///android_asset/newShow.html");
+            }
+        });
         webViewSetting.webviewSetting(this, newShowwebView);
     }
+
 
     //监听返回键
     @Override
@@ -49,23 +66,6 @@ public class newShow extends BaseActivity {
         super.onBackPressed();
         newsList.instance.finish();
         goMain();
-    }
-
-    public class newsshow {
-        //将显示Toast和对话框的方法暴露给JS脚本调用
-        @JavascriptInterface
-        public void newsshowhtml() {
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    String imgSrc = "[\"https://www.mmvtc.cn/templet/default/slider/5.png\",\"https://www.mmvtc.cn/templet/default/slider/4.png\",\"https://www.mmvtc.cn/templet/default/slider/3.png\"]";
-                    newShowwebView.loadUrl("javascript:setNews('" + imgSrc + "')");
-                }
-            });
-        }
-
     }
 
 }

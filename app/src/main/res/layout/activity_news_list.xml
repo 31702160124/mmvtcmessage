@@ -10,7 +10,8 @@
         android:id="@+id/set_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:m_left_image="@drawable/back" />
+        tools:m_left_image="@drawable/back"
+        tools:m_right_image="@drawable/refresh1" />
 
     <ListView
         android:id="@+id/newsLists"

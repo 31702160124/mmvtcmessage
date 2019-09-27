@@ -1,6 +1,7 @@
 package com.qq.a1843318972.mmvtcmessage.newsList;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -24,6 +26,8 @@ public class newsList extends BaseActivity implements View.OnClickListener {
     private static String TAG = "newsListListview";
     @SuppressLint("StaticFieldLeak")
     public static newsList instance = null;
+    private ProgressDialog progressDialog;
+    private WebView newShowwebView;
     private ListView newsLists;
     private ImageView up_img, down_img;
     private homeItem homeItem;
@@ -62,13 +66,27 @@ public class newsList extends BaseActivity implements View.OnClickListener {
                 goMain();
             }
         });
+        setBack.getRightBtnImage().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (page_name.contains("计算机工程系")) {
+                    getHtml.getNewsList(instance, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id, progressDialog);
+                } else {
+                    getHtml.getNewsList(instance, handler, baseUrl + id + port + b, 0, newsLists, page_name, id, progressDialog);
+                }
+            }
+        });
         newsLists = findViewById(R.id.newsLists);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("loading,不要急");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
         if (page_name.contains("计算机工程系")) {
-            getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
+            getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id, progressDialog);
         } else {
-            getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id);
+            getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id, progressDialog);
         }
-//        Toast.makeText(this, page_name, Toast.LENGTH_SHORT).show();
+        //        Toast.makeText(this, page_name, Toast.LENGTH_SHORT).show();
         page_id = findViewById(R.id.page_id);
         up_img = findViewById(R.id.up_img);
         down_img = findViewById(R.id.down_img);
@@ -92,21 +110,23 @@ public class newsList extends BaseActivity implements View.OnClickListener {
                         Toast.makeText(this, "没有上一页", Toast.LENGTH_SHORT).show();
                         up_img.setBackground(getResources().getDrawable(R.drawable.up_black));
                     } else {
+                        progressDialog.show();
                         page_id.setText(String.valueOf(b + "/" + down_ID));
                         if (page_name.contains("计算机工程系")) {
-                            getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
+                            getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id, progressDialog);
                         } else {
-                            getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id);
+                            getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id, progressDialog);
                         }
                     }
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_black));
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_blue));
                 } else {
+                    progressDialog.show();
                     page_id.setText(String.valueOf(b + "/" + down_ID));
                     if (page_name.contains("计算机工程系")) {
-                        getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
+                        getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id, progressDialog);
                     } else {
-                        getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id);
+                        getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id, progressDialog);
                     }
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_blue));
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_blue));
@@ -122,21 +142,23 @@ public class newsList extends BaseActivity implements View.OnClickListener {
                         Toast.makeText(this, "没有下一页", Toast.LENGTH_SHORT).show();
                         down_img.setBackground(getResources().getDrawable(R.drawable.down_black));
                     } else {
+                        progressDialog.show();
                         page_id.setText(String.valueOf(b + "/" + down_ID));
                         if (page_name.contains("计算机工程系")) {
-                            getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
+                            getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id, progressDialog);
                         } else {
-                            getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id);
+                            getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id, progressDialog);
                         }
                     }
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_black));
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_blue));
                 } else {
+                    progressDialog.show();
                     page_id.setText(String.valueOf(b + "/" + down_ID));
                     if (page_name.contains("计算机工程系")) {
-                        getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id);
+                        getHtml.getNewsList(this, handler, jsjgcxUrl + id + port + b, 1, newsLists, page_name, id, progressDialog);
                     } else {
-                        getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id);
+                        getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id, progressDialog);
                     }
                     down_img.setBackground(getResources().getDrawable(R.drawable.down_blue));
                     up_img.setBackground(getResources().getDrawable(R.drawable.up_blue));

@@ -4,21 +4,24 @@
     <meta http-equiv="content-type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <style>
-	img {
+	* {
 		max-width:100%;
 		height:auto;
 	}
     html{
         background: #b3d8e8;
+		margin:0;
+		padding:0;
     }
-
-
+	p img{
+	    display: block;
+	}
 
     </style>
 
 </head>
 
-<body onload="javascript:newsshow.newsshowhtml()">
+<body>
 
 <div class="title" id="title">
 
@@ -30,12 +33,15 @@
 <script type="text/javascript">
 
         function setNews(jsonarr){
-			var arr = JSON.parse(jsonarr);
+			//var arr = JSON.parse(jsonarr);
             var newtitle = document.getElementById("title");
             var newmain = document.getElementById("main");
-            newtitle.innerText = arr[0];
-            newmain.innerText = arr[1];
+            //newtitle.innerText = arr[0];
+            newmain.innerHTML = jsonarr;
         }
 
+
+
 </script>
+</body>
 </html>

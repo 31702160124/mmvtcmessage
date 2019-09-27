@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.qq.a1843318972.mmvtcmessage.entity.homeItem;
 import com.qq.a1843318972.mmvtcmessage.utils.webViewSetting;
 
+//弃用
+
 public class newsListWebView extends BaseActivity implements View.OnClickListener {
     private String TAG = "newsListWebView";
     private WebView newsListWeb;
