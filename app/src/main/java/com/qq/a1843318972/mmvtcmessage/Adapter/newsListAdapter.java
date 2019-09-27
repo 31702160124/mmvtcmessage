@@ -4,29 +4,34 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.qq.a1843318972.mmvtcmessage.R;
 import com.qq.a1843318972.mmvtcmessage.entity.newsListItem;
 import com.qq.a1843318972.mmvtcmessage.newShow;
 import com.qq.a1843318972.mmvtcmessage.newsList.newsList;
+import com.qq.a1843318972.mmvtcmessage.utils.netWork;
 
 import java.util.ArrayList;
 
 public class newsListAdapter extends BaseAdapter {
 
     private ArrayList<newsListItem> newsArrayList;
-    private Context context;
-    private String shouListName;
-    private int shouListid;
-    private Activity activity;
+    private Context                 context;
+    private String                  shouListName;
+    private int                     shouListid;
+    private Activity                activity;
 
     public newsListAdapter(Context context, ArrayList<newsListItem> newsArrayList, String shouListName, int shouListid) {
         this.newsArrayList = newsArrayList;
@@ -58,12 +63,16 @@ public class newsListAdapter extends BaseAdapter {
                     new Handler().post(new Runnable() {
                         @Override
                         public void run() {
-                            Intent intent = new Intent(context, newShow.class);
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                            intent.putExtra("id", shouListid);
-                            intent.putExtra("url", newsArrayList.get(position).getNewsUrl());
-                            intent.putExtra("name", shouListName);
-                            context.startActivity(intent);
+                            if (netWork.isNewworkConnected(context)) {
+                                Intent intent = new Intent(context, newShow.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.putExtra("id", shouListid);
+                                intent.putExtra("url", newsArrayList.get(position).getNewsUrl());
+                                intent.putExtra("name", shouListName);
+                                context.startActivity(intent);
+                            } else {
+                                Toast.makeText(context, "请打开网络......", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 }

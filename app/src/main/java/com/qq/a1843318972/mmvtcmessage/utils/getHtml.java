@@ -3,6 +3,7 @@ package com.qq.a1843318972.mmvtcmessage.utils;
 import android.app.Activity;
 import android.webkit.WebView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.qq.a1843318972.mmvtcmessage.Adapter.newsListAdapter;
 import com.qq.a1843318972.mmvtcmessage.entity.newsListItem;
@@ -157,7 +158,11 @@ public class getHtml {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        listView.setAdapter(new newsListAdapter(activity.getApplicationContext(), newsArrayList, page_name, id));
+                        if (netWork.isNewworkConnected(activity.getApplicationContext())) {
+                            listView.setAdapter(new newsListAdapter(activity.getApplicationContext(), newsArrayList, page_name, id));
+                        } else {
+                            Toast.makeText(activity.getApplicationContext(), "请打开网络......", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
             }

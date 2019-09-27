@@ -68,7 +68,7 @@ public class newsList extends BaseActivity implements View.OnClickListener {
         } else {
             getHtml.getNewsList(this, handler, baseUrl + id + port + b, 0, newsLists, page_name, id);
         }
-        Toast.makeText(this, page_name, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, page_name, Toast.LENGTH_SHORT).show();
         page_id = findViewById(R.id.page_id);
         up_img = findViewById(R.id.up_img);
         down_img = findViewById(R.id.down_img);
