@@ -17,14 +17,15 @@ public class newShow extends BaseActivity {
     private WebView newShowwebView;
     private String newShowUrl, showNewsName;
     private int id;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initTopbar(isImmerse(), newShowColor(getApplicationContext()));
         setContentView(R.layout.activity_new_show);
-        Intent intent = getIntent();
         TopBar setBack = (TopBar) findViewById(R.id.set_back);
+        intent = getIntent();
         setBack.setTitle(showNewsName = intent.getStringExtra("name"));
         id = intent.getIntExtra("id", 915);
         setTopBar(setBack);
@@ -35,6 +36,9 @@ public class newShow extends BaseActivity {
                 intent.putExtra("name", showNewsName);
                 intent.putExtra("id", id);
                 startActivity(intent1);
+                if (newShowwebView!=null){
+                    newShowwebView.destroy();
+                }
                 finish();
             }
         });
@@ -64,8 +68,14 @@ public class newShow extends BaseActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        newsList.instance.finish();
-        goMain();
+        Intent intent1 = new Intent(getApplicationContext(), newsList.class);
+        intent.putExtra("name", showNewsName);
+        intent.putExtra("id", id);
+        startActivity(intent1);
+        if (newShowwebView!=null){
+            newShowwebView.destroy();
+        }
+        finish();
     }
 
 }

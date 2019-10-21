@@ -5,9 +5,10 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#c7734c"
+        android:background="@drawable/blue2"
         android:orientation="horizontal">
 
         <LinearLayout

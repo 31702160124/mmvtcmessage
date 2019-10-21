@@ -62,12 +62,12 @@
 
         <!--logo开始-->
         <ImageView
-            android:visibility="invisible"
             android:id="@+id/logo"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/logo" />
+            android:layout_marginTop="100dp"
+            android:src="@drawable/logo"
+            android:visibility="invisible" />
         <!--logo结束-->
         <ImageView
             android:layout_width="match_parent"

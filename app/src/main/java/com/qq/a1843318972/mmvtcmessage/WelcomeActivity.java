@@ -47,7 +47,7 @@ public class WelcomeActivity extends BaseActivity {
                             @Override
                             public void onAnimationUpdate(ValueAnimator animation) {
                                 float fractionValue = animation.getAnimatedFraction();
-                                pikaqiu.setAlpha(fractionValue);
+//                                pikaqiu.setAlpha(fractionValue);
                             }
                         });
                         rValue.setInterpolator(new DecelerateInterpolator());

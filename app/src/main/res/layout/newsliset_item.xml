@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="3dp"
-        android:background="#f2c306" />
+        android:background="#207c08" />
 
     <LinearLayout
         android:id="@+id/go_news"
@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:background="#00b7ff"
+                android:background="#88999f"
                 android:gravity="center_horizontal"
                 android:singleLine="true"
                 android:textColor="#80000000"
@@ -52,11 +52,6 @@
                 android:textSize="16sp" />
 
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/down_blue" />
 
 
     </LinearLayout>
